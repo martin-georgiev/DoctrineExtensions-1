@@ -77,6 +77,9 @@ class SortableListener extends MappedEventSubscriber
 
         // process all objects being deleted
         foreach ($ea->getScheduledObjectDeletions($uow) as $object) {
+            if ($object instanceof ExternallySortable && $object->isSortedExternally()) {
+                continue;
+            }
             $meta = $om->getClassMetadata(get_class($object));
             if ($config = $this->getConfiguration($om, $meta->name)) {
                 $this->processDeletion($ea, $config, $meta, $object);
@@ -85,6 +88,9 @@ class SortableListener extends MappedEventSubscriber
 
         // process all objects being updated
         foreach ($ea->getScheduledObjectUpdates($uow) as $object) {
+            if ($object instanceof ExternallySortable && $object->isSortedExternally()) {
+                continue;
+            }
             $meta = $om->getClassMetadata(get_class($object));
             if ($config = $this->getConfiguration($om, $meta->name)) {
                 $this->processUpdate($ea, $config, $meta, $object);
@@ -93,6 +99,9 @@ class SortableListener extends MappedEventSubscriber
 
         // process all objects being inserted
         foreach ($ea->getScheduledObjectInsertions($uow) as $object) {
+            if ($object instanceof ExternallySortable && $object->isSortedExternally()) {
+                continue;
+            }
             $meta = $om->getClassMetadata(get_class($object));
             if ($config = $this->getConfiguration($om, $meta->name)) {
                 $this->processInsert($ea, $config, $meta, $object);
