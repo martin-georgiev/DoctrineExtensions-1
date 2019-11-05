@@ -19,3 +19,28 @@ a release.
 ---
 
 ## [Unreleased]
+### Global / Shared
+#### Fixed
+- Add `parent::__construct()` calls to Listeners w/ custom constructors (#2012)
+- Add upcoming Doctrine ODM 2.0 to `composer.json` conflicts (#2027)
+
+### Loggable
+#### Fixed
+- Added missing string casting of `objectId` in `LogEntryRepository::revert()` method (#2009)
+
+### ReferenceIntegrity
+#### Fixed
+- Get class from meta in ReferenceIntegrityListener [#2021]
+
+### Translatable
+#### Fixed
+- Return default AST executor instead of throwing Exception in Walker (#2018)
+
+### Tree
+#### Fixed
+- Remove hard-coded parent column name in repository prev/next sibling queries [#2020]
+
+## [2.4.37] - 2019-03-17
+### Translatable
+#### Fixed
+- Bugfix to load null value translations (#1990)
